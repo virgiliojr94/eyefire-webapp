@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { fethEvents } from "../services/eonet.services";
 import { Event } from "../interfaces";
+import CustomMarker from "../assets/images/wildfires.png";
 
 export const HomePage = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -49,7 +50,13 @@ export const HomePage = () => {
       lat: eventMarker.geometry[0].coordinates[1],
       lng: eventMarker.geometry[0].coordinates[0],
     };
-    return <Marker key={eventMarker.id} position={eventPosition} />;
+    return (
+      <Marker
+        key={eventMarker.id}
+        position={eventPosition}
+        options={{ icon: CustomMarker }}
+      />
+    );
   };
   return (
     <main className="bg-dark-400 w-full h-screen flex justify-center items-center py-4">
